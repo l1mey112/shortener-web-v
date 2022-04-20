@@ -6,6 +6,11 @@ Backend for a simple url shortener + plaintext store using vweb and Redis. Front
 
 [**API docs here! (blog.l-m.dev)**](https://blog.l-m.dev/API-DOCS-for-s-l-m-dev-4abb3b502bf34a2ebbb5261b8d4a36d4)
 
+### Requires
+- V install
+- NPM
+- Redis with default configuration
+
 ## Compiling and running your own instance
 **Inside the main directory...**
 ### Build simple binary
