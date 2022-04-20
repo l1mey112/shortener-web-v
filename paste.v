@@ -13,8 +13,8 @@ struct PostPaste {
 /*
 
 {
-	"text":"https://example.com",
-	"expire":"300"
+	"text":"lorem\nipsome",
+	"expire":300
 }
 
 */

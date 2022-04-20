@@ -52,18 +52,18 @@ async function handleurl(txt : string){
             success(this.responseText);
         } else if (this.readyState == 4 && this.status == 418) { 
             //? contact me, 418 json parsing error
-            err('misconfigured fronted, contact me!');
+            err('misconfigured frontend, contact me!');
         } else if (this.readyState == 4 && this.status == 400) { 
             //? contact me, 400 json parsing error
-            err('misconfigured fronted, contact me!');
+            err('misconfigured frontend, contact me!');
+        } else if (this.readyState == 4 && this.status == 500){
+            //? internal errors
+            //? check the location variable
+            err('server internal error, contact me!');
         } else if (this.readyState == 4 && this.status == 0){
             //? possible server downtime
             //? check the location variable
             err('possible server downtime!');
-        } else if (this.readyState == 4 && this.status == 500){
-            //? possible server downtime
-            //? check the location variable
-            err('server internal error, contact me!');
         }
     };
 
