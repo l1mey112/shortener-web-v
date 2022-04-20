@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+
+    <main class="grid">
+        
+      <div class='line'>
+
+          <form id="entry" role="search">
+              <input type="search" id="query" name="inputapply" value=""
+                  placeholder="https://">
+          </form>
+          <br>
+
+          <form id="check">
+              <p style="color:rgb(116, 204, 255)">Expire?</p>
+              <label for="ch1">No expiry</label>
+              <input class='radiocheck' name="rb" type="radio" id="ch1" value="none" checked="checked">
+              
+              <label for="ch2">24 hours</label>
+              <input class='radiocheck' name="rb" type="radio" id="ch2" value="day">
+              
+              <label for="ch3">5 mins</label>
+              <input class='radiocheck' name="rb" type="radio" id="ch3" value="min">
+              
+          </form>
+
+          <br>
+          
+          <div id='outbox'>
+              <p class='out'></p>
+          </div>
+          
+      </div>
+
+      <div class='content'>
+          <div id='ccontainer' class="link1">
+              <h1 style="color:rgb(122, 20, 255);" >
+                  The s.l-m (slim) api!
+              </h1>
+              <br><p><span>
+              This is a simple api that allows you to shorten your links and store plaintext data similar to pastebin. This originally was a small project I wrote up on and off over a couple weeks while learning full stack web development. I returned to it to rewrite the backend into a more robust and scalable api using Redis and the V langage.
+              <br><br>
+              It's a very simple service by design, this is just a frontend for the underlying api. Only necessary data is stored, dont believe me? <b><a href="https://github.com/l1mey112/shortener-backend-v" target="_blank">Full Source Code</a></b>
+              <br><br>
+              <b><span style="color:rgb(232, 168, 66);">
+              Clicking on the square below switches between <span style="color:rgb(199, 149, 207);">short links and plaintext mode</span>. The return link is automatically copied into the clipboard.
+              </span></b>
+            </span>
+              <br>
+              <br>
+              <span style="color:rgb(255, 72, 209);">I hope you appreciate it! - <b>l-m</b></span>
+              <br>
+              <b><a href="https://blog.l-m.dev/API-DOCS-for-s-l-m-dev-4abb3b502bf34a2ebbb5261b8d4a36d4" target="_blank">API docs here</a></b>
+              
+              </p>
+          </div>
+
+          <div id='ccontainer' style="width: 60vw;" class="link2">
+            <h1 style="color:rgb(122, 20, 255);" >
+                Plaintext mode.
+            </h1>
+            <br>
+            <form id="plain-entry">
+              <textarea style="overflow: hidden; overflow-wrap: break-word; height: 300px;" placeholder="Shift-Ctrl-Enter to submit!..." autofocus="" spellcheck="false" autocomplete="off" name="txt" id="text-input"></textarea>
+            </form>
+          </div>
+      </div>
+
+  </main>
+
+  <button id="butt" class="tack-bottom wrap"></button>
+
+  <p class="bottom">l-m.dev 2022</p>
+
+  </body>
+</html>
