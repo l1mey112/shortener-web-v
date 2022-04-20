@@ -11,10 +11,15 @@ Backend for a simple url shortener + plaintext store using vweb and Redis. Front
 ### Build simple binary
 ```sh
 v up
+sudo systemctl enable redis
+
 cd public
 npm install
 cd ..
   # correct setup of all deps
+  # npm deps for build
+  # v updates
+  # enable redis
 
 ./build/build-all.sh
   # this will build the vite project
