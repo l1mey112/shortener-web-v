@@ -3,7 +3,7 @@ import json
 import vredis
 
 import encoding.base64 as bsf
-//? actual reliable data format
+import compress.zlib
 
 struct PostPaste {
     text string
@@ -20,7 +20,7 @@ struct PostPaste {
 */
 
 [post;'/api/p/']
-fn (mut app App) set_paste(user string) vweb.Result {
+fn (mut app App) set_paste() vweb.Result {
     println("got POST for text")
     if app.req.header.get(.content_type) or {
         app.set_status(400,"")
@@ -47,7 +47,10 @@ fn (mut app App) set_paste(user string) vweb.Result {
 	}   //* connect to redis
 
     pointer := randthis()
-	data := bsf.encode_str(paste.text)
+	data := bsf.encode(zlib.compress(paste.text.bytes()) or {
+        app.set_status(500,"")
+        return app.text("Internal server error, contact me!")
+    })
 
     if !redis.set("p:"+pointer, data) {
         app.set_status(500,"")
@@ -65,7 +68,7 @@ fn (mut app App) set_paste(user string) vweb.Result {
 
     app.set_status(200,"")
     return app.text('s.l-m.dev/p/$pointer')
-    //? s.l-m.dev/l/$pointer
+    //? s.l-m.dev/p/$pointer
 }
 
 [get;"/p/:id"]
@@ -78,9 +81,14 @@ fn (mut app App) get_paste(id string) vweb.Result {
     println("got GET")
     println(id)
 
-	data := bsf.decode_str(redis.get("p:"+id) or {
+	data := bsf.decode(redis.get("p:"+id) or {
         return app.not_found()
 	})
 
-    return app.text(data)
+    final := zlib.decompress(data) or {
+        app.set_status(500,"")
+        return app.text("Internal server error, contact me!")
+    }
+
+    return app.text(final.bytestr())
 }

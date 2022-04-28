@@ -20,13 +20,13 @@ struct PostLink {
 
 {
 	"url":"https://example.com",
-	"expire":"300"
+	"expire":300
 }
 
 */
 
 [post;'/api/l/']
-fn (mut app App) set_link(user string) vweb.Result {
+fn (mut app App) set_link() vweb.Result {
     println("got POST for link")
     if app.req.header.get(.content_type) or {
         app.set_status(400,"")

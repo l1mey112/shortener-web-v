@@ -13,6 +13,12 @@ Backend for a simple url shortener + plaintext store using vweb and Redis. Front
 
 ## Compiling and running your own instance
 **Inside the main directory...**
+
+### Running the project for development
+```sh
+fuser -k 8080/tcp # kill process on 8080 port
+v watch --add "templates/" run .
+```
 ### Build simple binary
 ```sh
 v up
