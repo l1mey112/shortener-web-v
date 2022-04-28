@@ -1,6 +1,6 @@
 # shortener-web-v
 
-Backend for a simple url shortener + plaintext store using vweb and Redis. Frontend is created using typescript and built using vite.
+Backend for a simple url shortener and plaintext + temporary binary store using vweb and Redis. Frontend is created using typescript and built using vite.
 
 [**Shortener website here! (s.l-m.dev)**](https://s.l-m.dev/)
 
