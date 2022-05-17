@@ -52,7 +52,8 @@ fn (mut app App) set_binary() vweb.Result {
 
     mut redis := vredis.connect(vredis.ConnOpts{}) or {
 		app.set_status(500,"")
-        eprintln("REDIS ERROR - COULD NOT CONNECT - POST\n$err")
+        eprintln("REDIS ERROR - COULD NOT CONNECT - POST ")
+        eprintln(err)
         return app.text("Internal server error, contact me!")
 	}   //* connect to redis
 
@@ -60,13 +61,14 @@ fn (mut app App) set_binary() vweb.Result {
 
     if !redis.set("b:"+pointer, data_str) {
         app.set_status(500,"")
-        eprintln("REDIS ERROR - COULD NOT SET DATA - POST\n$err")
+        eprintln("REDIS ERROR - COULD NOT SET DATA - POST ")
         return app.text("Internal server error, contact me!")
     }   //? cannot set data
 
     redis.expire("b:"+pointer,172800) or {
         app.set_status(500,"")
-        eprintln("REDIS ERROR - COULD NOT SET EXPIRY - POST\n$err")
+        eprintln("REDIS ERROR - COULD NOT SET EXPIRY - POST ")
+        eprintln(err)
         return app.text("Internal server error, contact me!")
     }   //? cannot set expiry
 
@@ -79,7 +81,8 @@ fn (mut app App) set_binary() vweb.Result {
 fn (mut app App) get_binary(id string) vweb.Result {
     mut redis := vredis.connect(vredis.ConnOpts{}) or {
 		app.set_status(500,"")
-        eprintln("REDIS ERROR - COULD NOT CONNECT - POST\n$err")
+        eprintln("REDIS ERROR - COULD NOT CONNECT - POST ")
+        eprintln(err)
         return app.text("Internal server error, contact me!")
 	}   //* connect to redis
     println("got GET")
